@@ -21,6 +21,8 @@ import {
   ListItemButton,
   ListItemText
 } from '@mui/material';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import ResumeViewer from '../components/ResumeViewer';
 import MenuIcon from '@mui/icons-material/Menu';
 import CodeIcon from '@mui/icons-material/Code';
 import WorkIcon from '@mui/icons-material/Work';
@@ -61,6 +63,7 @@ const fuseOptions = {
 };
 
 function Navbar() {
+  const [viewerOpen, setViewerOpen] = useState(false);
   const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -403,6 +406,21 @@ function Navbar() {
         {/* Social Icons (hidden on mobile for space) */}
         {!isMobile && (
           <Box sx={{ display: 'flex' }}>
+            <Button
+              variant="outlined"
+              startIcon={<PictureAsPdfIcon />}
+              onClick={() => setViewerOpen(true)}
+              sx={{
+                borderColor: '#1A237E',
+                color: 'rgba(255, 255, 255, 1)',
+                '&:hover': {
+                  borderColor: '#0D47A1',
+                  bgcolor: 'rgba(255, 255, 255, 0.51)'
+                }
+              }}
+            >
+              View Resume
+            </Button>
             <IconButton color="inherit" href="https://github.com/paul1stone" target="_blank" sx={{ ml: 1 }}>
               <GitHubIcon />
             </IconButton>
@@ -411,6 +429,7 @@ function Navbar() {
             </IconButton>
           </Box>
         )}
+        <ResumeViewer open={viewerOpen} onClose={() => setViewerOpen(false)} />
 
         {/* Search Bar */}
         <TextField

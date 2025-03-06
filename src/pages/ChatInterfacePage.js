@@ -175,9 +175,12 @@ function ChatInterface() {
                     borderRadius: 2,
                     color: message.sender === 'user' ? 'white' : 'text.primary'
                   }}>
-                    <Typography variant="body1" sx={{ whiteSpace: 'pre-wrap' }}>
-                      {message.text}
-                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{ whiteSpace: 'pre-wrap' }}
+                      dangerouslySetInnerHTML={{ __html: message.text }}
+                    />
+
                   </Paper>
                   {message.sender === 'user' && (
                     <Avatar sx={{ bgcolor: 'secondary.main' }}>U</Avatar>
