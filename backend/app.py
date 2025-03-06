@@ -1,23 +1,22 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-import requests
+# backend/app.py
 import os
-import json
-from dotenv import load_dotenv
 import traceback
+import requests
+import json
+from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
+from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
 
-app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
-
 ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY')
-
 if not ANTHROPIC_API_KEY:
     print("WARNING: No API key found! Please set the ANTHROPIC_API_KEY environment variable.")
 
-# Paul Stone's resume data
+# -----------------------
+# Resume Data
+# -----------------------
 resume_data = {
     "name": "Paul Stone",
     "title": "Computer Science Student",
@@ -26,7 +25,6 @@ resume_data = {
         "email": "pws59@cornell.edu"
     },
     "summary": "Computer Science student at Cornell University with experience in Machine Learning, AI, and cloud technologies. Skilled in developing RAG-based chatbots and working with various AWS services.",
-
     "education": [
         {
             "degree": "B.S. in Computer Science",
@@ -35,7 +33,6 @@ resume_data = {
             "coursework": "Data Structures, Algorithms, Machine Learning, Artificial Intelligence, Systems Programming, Database Systems, PLL"
         }
     ],
-
     "experience": [
         {
             "position": "Machine Learning Engineer Intern",
@@ -63,7 +60,6 @@ resume_data = {
             ]
         }
     ],
-
     "projects": [
         {
             "name": "Agario Game Clone",
@@ -86,7 +82,6 @@ resume_data = {
             ]
         }
     ],
-
     "skills": {
         "programming_languages": ["Python", "OCaml", "RISCV", "x86", "C/C++", "Java", "JavaScript", "TypeScript"],
         "web_development": ["HTML", "CSS", "PHP", "Svelte", "React", "Angular", "FastAPI", "Firebase"],
@@ -95,7 +90,6 @@ resume_data = {
         "tools": ["Vim", "VSCode", "Git", "JIRA"],
         "technical_knowledge": ["Networks", "Functional Programming", "Computer Architecture", "Artificial Intelligence", "Machine Learning", "System Design", "OpenAI", "LLMs"]
     },
-
     "extracurricular": [
         {
             "activity": "Varsity, Heavyweight Rowing, Cornell University",
@@ -107,12 +101,19 @@ resume_data = {
     ]
 }
 
-# Create system prompt from resume data
+# -----------------------
+# Flask App Configuration
+# -----------------------
+# Serve static files from the ../build folder
+app = Flask(__name__, static_folder="../build", static_url_path="")
+CORS(app)  # If you need cross-origin requests; otherwise you can remove this
 
 
+# -----------------------
+# Helper: System Prompt
+# -----------------------
 def create_system_prompt():
     data = resume_data
-
     system_prompt = f"""You are an AI assistant representing {data['name']}. You should answer questions as if you are {data['name']}'s personal assistant who knows their professional background very well.
 
 Here is {data['name']}'s resume and professional background:
@@ -124,7 +125,6 @@ SUMMARY: {data['summary']}
 
 EDUCATION:
 """
-
     for edu in data['education']:
         system_prompt += f"- {edu['degree']} from {edu['institution']}, {edu['duration']}\n"
         system_prompt += f"  Relevant Coursework: {edu['coursework']}\n"
@@ -163,89 +163,103 @@ If asked about something not in {data['name']}'s background, politely explain yo
 
 For questions about availability for interviews or meetings, indicate that you'd need to check with Paul directly but that he's generally interested in opportunities related to software engineering, machine learning engineering, and AI development.
 """
-
     return system_prompt
 
 
+# -----------------------
+# React App Serving Routes
+# -----------------------
+@app.route('/')
+def serve_react_app():
+    # Serve the main index.html from the build folder
+    return send_from_directory('../build', 'index.html')
+
+
+@app.errorhandler(404)
+def not_found(e):
+    # If a route is not found, serve the React app
+    return send_from_directory('../build', 'index.html')
+
+
+# -----------------------
+# Test Endpoint
+# -----------------------
 @app.route('/api/test', methods=['GET'])
 def test():
     return jsonify({"status": "OK", "message": "Backend is working"}), 200
 
 
+# -----------------------
+# Main Chat Endpoint
+# -----------------------
 @app.route('/api/chat', methods=['POST'])
 def chat():
     try:
-        # Check if API key is available
         if not ANTHROPIC_API_KEY:
             return jsonify({
                 'error': 'API key is missing. Please check your environment variables.'
             }), 500
 
-        # Get request data
         data = request.json
         messages = data.get('messages', [])
-
         if not messages:
             return jsonify({'error': 'No messages provided'}), 400
 
-        # Generate system prompt from resume data
+        # Generate system prompt
         system_prompt = create_system_prompt()
 
-        # Prepare the request to Claude API
+        # Prepare the request to Claude
         payload = {
-            'model': 'claude-3-7-sonnet-20250219',  # Using the latest model
+            'model': 'claude-3-7-sonnet-20250219',
             'max_tokens': 1024,
             'system': system_prompt,
             'messages': messages
         }
-
         headers = {
             'Content-Type': 'application/json',
             'x-api-key': ANTHROPIC_API_KEY,
             'anthropic-version': '2023-06-01'
         }
 
-        try:
-            response = requests.post(
-                'https://api.anthropic.com/v1/messages',
-                json=payload,
-                headers=headers,
-                timeout=30
-            )
+        response = requests.post(
+            'https://api.anthropic.com/v1/messages',
+            json=payload,
+            headers=headers,
+            timeout=30
+        )
 
-            # Check if the request was successful
-            if response.status_code != 200:
-                error_details = response.text
-                try:
-                    error_json = response.json()
-                    if 'error' in error_json:
-                        error_details = error_json['error'].get(
-                            'message', error_details)
-                except:
-                    pass
+        if response.status_code != 200:
+            error_details = response.text
+            try:
+                error_json = response.json()
+                if 'error' in error_json:
+                    error_details = error_json['error'].get(
+                        'message', error_details)
+            except:
+                pass
 
-                return jsonify({
-                    'error': f'Claude API returned {response.status_code}',
-                    'details': error_details
-                }), 500
+            return jsonify({
+                'error': f'Claude API returned {response.status_code}',
+                'details': error_details
+            }), 500
 
-            # Parse and return the response
-            response_data = response.json()
-            return jsonify(response_data)
+        response_data = response.json()
+        return jsonify(response_data)
 
-        except requests.exceptions.Timeout:
-            return jsonify({'error': 'Request to Claude API timed out'}), 504
-        except requests.exceptions.ConnectionError:
-            return jsonify({'error': 'Could not connect to Claude API'}), 503
-
+    except requests.exceptions.Timeout:
+        return jsonify({'error': 'Request to Claude API timed out'}), 504
+    except requests.exceptions.ConnectionError:
+        return jsonify({'error': 'Could not connect to Claude API'}), 503
     except Exception as e:
         traceback.print_exc()
         return jsonify({'error': f'An unexpected error occurred: {str(e)}'}), 500
 
 
+# -----------------------
+# Simple Test Endpoint
+# -----------------------
 @app.route('/api/simple-response', methods=['POST'])
 def simple_response():
-    """A simple endpoint that always works, for testing"""
     try:
         data = request.json
         user_message = "No message found"
@@ -256,7 +270,6 @@ def simple_response():
                     user_message = msg.get('content', "No content")
                     break
 
-        # Always return a working response
         response_data = {
             "id": "msg_simulated",
             "content": [
@@ -266,12 +279,16 @@ def simple_response():
                 }
             ]
         }
-
         return jsonify(response_data)
     except Exception as e:
         print(f"Error in simple response: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
 
+# -----------------------
+# Run the App Locally
+# (In Production, use gunicorn or similar.)
+# -----------------------
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    # For local testing, you can do:
+    app.run(debug=True, host='0.0.0.0', port=5000)

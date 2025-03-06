@@ -58,8 +58,12 @@ function ChatInterface() {
       });
 
       // Call your Flask backend (currently using Anthropic Claude)
+      // const response = await axios.post(
+      //   'http://localhost:5000/api/chat',
+      //   { messages: conversationHistory }
+      // );
       const response = await axios.post(
-        'http://localhost:5000/api/chat',
+        '/api/chat',
         { messages: conversationHistory }
       );
 
