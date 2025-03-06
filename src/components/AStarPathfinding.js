@@ -16,7 +16,6 @@ import PauseIcon from '@mui/icons-material/Pause';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import ClearIcon from '@mui/icons-material/Clear';
 import GridOnIcon from '@mui/icons-material/GridOn';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { styled } from '@mui/material/styles';
 
 
@@ -43,8 +42,6 @@ const CELL_COLORS = {
 
 
 const GridCell = styled(Box)(({
-  theme,
-  celltype,
   isStart,
   isEnd,
   isWall,
@@ -79,8 +76,6 @@ const AStarPathfinding = () => {
 
 
   const [grid, setGrid] = useState([]);
-  const [drawing, setDrawing] = useState(false);
-  const [drawType, setDrawType] = useState(WALL);
   const [startPos, setStartPos] = useState({ row: 5, col: 5 });
   const [endPos, setEndPos] = useState({ row: 15, col: 25 });
   const [runningState, setRunningState] = useState('idle');

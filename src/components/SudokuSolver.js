@@ -3,12 +3,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   Box,
   Typography,
-  Grid,
   Paper,
   Button,
-  Slider,
-  TextField,
-  InputAdornment
+  Slider
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
@@ -218,23 +215,7 @@ const SudokuSolver = () => {
     }
   };
 
-  const stepForward = () => {
-    if (solving || steps.length === 0 || currentStep >= steps.length - 1) return;
 
-    const nextStep = currentStep + 1;
-    setCurrentStep(nextStep);
-    setBoard(steps[nextStep].board);
-    setActiveCell(steps[nextStep].activeCell);
-  };
-
-  const stepBackward = () => {
-    if (solving || steps.length === 0 || currentStep <= 0) return;
-
-    const prevStep = currentStep - 1;
-    setCurrentStep(prevStep);
-    setBoard(steps[prevStep].board);
-    setActiveCell(steps[prevStep].activeCell);
-  };
 
   const handleSpeedChange = (event, newValue) => {
     setSpeed(newValue);

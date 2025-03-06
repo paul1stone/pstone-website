@@ -8,7 +8,6 @@ import {
   Slider,
   Stack,
   Grid,
-  Divider,
   Tooltip,
   Table,
   TableBody,

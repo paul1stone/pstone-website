@@ -17,7 +17,6 @@ import {
 import { motion } from 'framer-motion';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkIcon from '@mui/icons-material/Link';
 import { useNavigate } from 'react-router-dom';
 
 // Import placeholder images - you can replace these with your actual project images
