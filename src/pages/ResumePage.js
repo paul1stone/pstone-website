@@ -190,7 +190,7 @@ const ResumePage = () => {
                 variant="contained"
                 startIcon={<DownloadIcon />}
                 component="a"
-                href="/resume.pdf"
+                href="/Resume-PaulStone.pdf"
                 download
                 sx={{
                   bgcolor: '#1A237E',
