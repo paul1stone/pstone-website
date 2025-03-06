@@ -1,4 +1,4 @@
-// src/components/ChatInterface.js
+
 import React, { useState, useRef, useEffect } from 'react';
 import {
   Container,
@@ -26,7 +26,7 @@ function ChatInterface() {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Auto-scroll to bottom when messages update
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -35,7 +35,7 @@ function ChatInterface() {
     scrollToBottom();
   }, [messages]);
 
-  // Handle sending a message
+
   const handleSend = async () => {
     if (input.trim() === '' || isLoading) return;
 
@@ -46,7 +46,7 @@ function ChatInterface() {
     setIsLoading(true);
 
     try {
-      // Prepare conversation history for context
+
       const conversationHistory = messages.map(msg => ({
         role: msg.sender === 'ai' ? 'assistant' : 'user',
         content: msg.text
@@ -57,11 +57,11 @@ function ChatInterface() {
         content: currentInput
       });
 
-      // Call your Flask backend (currently using Anthropic Claude)
-      // const response = await axios.post(
-      //   'http://localhost:5000/api/chat',
-      //   { messages: conversationHistory }
-      // );
+
+
+
+
+
       const response = await axios.post(
         '/api/chat',
         { messages: conversationHistory }
@@ -92,7 +92,7 @@ function ChatInterface() {
     }
   };
 
-  // Handle Enter key press
+
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();

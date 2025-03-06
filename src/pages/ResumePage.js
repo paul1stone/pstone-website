@@ -1,4 +1,4 @@
-// src/pages/ResumePage.js
+
 import React, { useState } from 'react';
 import {
   Container,
@@ -33,16 +33,16 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SportsCricketIcon from '@mui/icons-material/SportsCricket';
 import { useNavigate } from 'react-router-dom';
 
-// Import profile image
+
 import profilePhoto from '../images/hs.jpeg';
 import ResumeViewer from '../components/ResumeViewer';
 
 const ResumePage = () => {
-  // const theme = useTheme();
-  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+
   const navigate = useNavigate();
   const [viewerOpen, setViewerOpen] = useState(false);
-  // Education data
+
   const education = {
     institution: "Cornell University, College of Engineering",
     degree: "B.S. in Computer Science",
@@ -50,7 +50,7 @@ const ResumePage = () => {
     coursework: "Data Structures, Algorithms, Machine Learning, Artificial Intelligence, Systems Programming, Database Systems, PLL"
   };
 
-  // Experience data
+
   const experiences = [
     {
       position: "Machine Learning Engineer Intern",
@@ -79,7 +79,7 @@ const ResumePage = () => {
     }
   ];
 
-  // Projects data
+
   const projects = [
     {
       name: "Agario Game Clone",
@@ -105,7 +105,7 @@ const ResumePage = () => {
     }
   ];
 
-  // Skills data
+
   const skills = {
     programmingLanguages: ["Python", "OCaml", "RISCV", "x86", "C/C++", "Java", "JavaScript", "TypeScript"],
     webDevelopment: ["HTML", "CSS", "PHP", "Svelte", "React", "Angular", "FastAPI", "Firebase"],
@@ -115,7 +115,7 @@ const ResumePage = () => {
     technicalKnowledge: ["Networks", "Functional Programming", "Computer Architecture", "Artificial Intelligence", "Machine Learning", "System Design", "OpenAI", "LLMs"]
   };
 
-  // Extracurricular activities
+
   const extracurricular = {
     activity: "Varsity, Heavyweight Rowing, Cornell University",
     details: [
@@ -174,7 +174,7 @@ const ResumePage = () => {
               <Button
                 variant="outlined"
                 startIcon={<PictureAsPdfIcon />}
-                onClick={() => setViewerOpen(true)} // Opens the modal
+                onClick={() => setViewerOpen(true)}
                 sx={{
                   borderColor: '#1A237E',
                   color: '#1A237E',

@@ -1,4 +1,4 @@
-// src/App.js
+
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -16,6 +16,8 @@ import ExperiencePage from './pages/ExperiencePage';
 import ZetaExperiencePage from './pages/ZetaExperiencePage';
 import CornellExperiencePage from './pages/CornellExperiencePage';
 import ResumePage from './pages/ResumePage';
+import ProjectsPage from './pages/ProjectsPage';
+import AlgorithmVisualization from './pages/AlgorithmVisualization';
 
 function App() {
 
@@ -29,6 +31,9 @@ function App() {
         <Route path="/education" element={<EducationPage />} />
         <Route path="/rowing" element={<RowingPage />} />
         <Route path="/chat" element={<ChatInterface />} />
+
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/projects/algorithm-visualization" element={<AlgorithmVisualization />} />
 
         <Route path="/experience" element={<ExperiencePage />} />
         <Route path="/experience/zeta" element={<ZetaExperiencePage />} />

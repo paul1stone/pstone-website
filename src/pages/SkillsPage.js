@@ -1,4 +1,4 @@
-// src/pages/SkillsPage.js
+
 import React from 'react';
 import {
   Container,
@@ -24,11 +24,11 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 
 const SkillsPage = () => {
-  // const theme = useTheme();
-  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+
   const navigate = useNavigate();
 
-  // Skill categories with details
+
   const skillCategories = [
     {
       title: "Programming Languages",
@@ -80,7 +80,7 @@ const SkillsPage = () => {
     }
   ];
 
-  // Technical strengths
+
   const technicalStrengths = [
     {
       name: "Full-Stack Development",

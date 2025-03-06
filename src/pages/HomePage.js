@@ -1,4 +1,4 @@
-// src/pages/HomePage.js
+
 import React from 'react';
 import profilePhoto from '../images/hs.jpeg';
 import {
@@ -23,11 +23,11 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
-  // const theme = useTheme();
-  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+
   const navigate = useNavigate();
 
-  // Featured skills to highlight
+
   const featuredSkills = [
     "Python", "React", "Machine Learning", "AWS", "Docker", "TypeScript"
   ];
@@ -109,7 +109,7 @@ const HomePage = () => {
               >
                 <Box
                   component="img"
-                  src={profilePhoto}  // Using the imported image
+                  src={profilePhoto}
                   alt="Paul Stone"
                   sx={{
                     width: '100%',

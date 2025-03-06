@@ -1,4 +1,4 @@
-// src/pages/CornellExperiencePage.js
+
 import React from 'react';
 import {
   Container,
@@ -28,11 +28,11 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 
 const CornellExperiencePage = () => {
-  // const theme = useTheme();
-  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+
   const navigate = useNavigate();
 
-  // Skills gained during this experience
+
   const skillsGained = [
     {
       category: "IoT Development",
@@ -76,7 +76,7 @@ const CornellExperiencePage = () => {
     }
   ];
 
-  // Key project components
+
   const projectComponents = [
     {
       title: "Mesh Network Deployment",

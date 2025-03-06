@@ -1,4 +1,4 @@
-// src/pages/AboutPage.js
+
 import React from 'react';
 import {
   Container,
@@ -25,12 +25,12 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import { useNavigate } from 'react-router-dom';
 
-// Import your profile image
+
 import profilePhoto from '../images/hs.jpeg';
 
 const AboutPage = () => {
-  // const theme = useTheme();
-  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+
   const navigate = useNavigate();
 
   return (

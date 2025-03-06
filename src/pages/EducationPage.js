@@ -1,4 +1,4 @@
-// src/pages/EducationPage.js
+
 import React from 'react';
 import {
   Container,
@@ -27,15 +27,15 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 
-// You can import an image of Cornell University here
-// import cornellImage from '../images/cornell.jpg';
+
+
 
 const EducationPage = () => {
-  // const theme = useTheme();
-  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+
   const navigate = useNavigate();
 
-  // Course details with descriptions
+
   const courseDetails = [
     {
       name: 'Data Structures',

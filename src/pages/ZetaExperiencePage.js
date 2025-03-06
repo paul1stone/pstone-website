@@ -1,4 +1,4 @@
-// src/pages/ZetaExperiencePage.js
+
 import React from 'react';
 import {
   Container,
@@ -28,11 +28,11 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 
 const ZetaExperiencePage = () => {
-  // const theme = useTheme();
-  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+
   const navigate = useNavigate();
 
-  // Skills gained during this experience
+
   const skillsGained = [
     {
       category: "Machine Learning & AI",
@@ -76,7 +76,7 @@ const ZetaExperiencePage = () => {
     }
   ];
 
-  // Key projects/tasks
+
   const keyTasks = [
     {
       title: "RAG-based Chatbot Development",

@@ -1,4 +1,4 @@
-// src/pages/MlAiPage.js
+
 import React from 'react';
 import {
   Container,
@@ -28,16 +28,16 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 
 const MlAiPage = () => {
-  // const theme = useTheme();
-  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+
   const navigate = useNavigate();
 
-  // AI/ML technologies
+
   const mlTechnologies = [
     {
       name: "Large Language Models",
       icon: <PsychologyIcon fontSize="large" />,
-      color: "#8E24AA", // Purple
+      color: "#8E24AA",
       description: "Experience working with various LLMs including OpenAI GPT models, Claude, and other advanced language models through AWS Bedrock.",
       skills: [
         "RAG-based chatbot development",
@@ -52,7 +52,7 @@ const MlAiPage = () => {
     {
       name: "Machine Learning Libraries",
       icon: <MemoryIcon fontSize="large" />,
-      color: "#43A047", // Green
+      color: "#43A047",
       description: "Proficiency with Python-based machine learning frameworks for building and training models.",
       skills: [
         "TensorFlow",
@@ -69,7 +69,7 @@ const MlAiPage = () => {
     {
       name: "Data Processing",
       icon: <StorageIcon fontSize="large" />,
-      color: "#FB8C00", // Orange
+      color: "#FB8C00",
       description: "Experience with data manipulation, preprocessing, and analysis for machine learning applications.",
       skills: [
         "Pandas",
@@ -86,7 +86,7 @@ const MlAiPage = () => {
     {
       name: "Cloud AI Services",
       icon: <CloudIcon fontSize="large" />,
-      color: "#039BE5", // Blue
+      color: "#039BE5",
       description: "Working with cloud-based AI/ML services and deployment platforms.",
       skills: [
         "AWS Bedrock",
@@ -100,7 +100,7 @@ const MlAiPage = () => {
     }
   ];
 
-  // ML/AI experience
+
   const mlExperience = [
     {
       title: "Machine Learning Engineer Intern",
@@ -128,7 +128,7 @@ const MlAiPage = () => {
     }
   ];
 
-  // AI/ML projects
+
   const mlProjects = [
     {
       title: "RAG-based Chatbot",
@@ -143,7 +143,7 @@ const MlAiPage = () => {
     }
   ];
 
-  // AI trends & interests
+
   const aiTrends = [
     {
       trend: "Multimodal AI",

@@ -1,4 +1,4 @@
-// src/pages/CloudDevOpsPage.js
+
 import React from 'react';
 import {
   Container,
@@ -31,11 +31,11 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 
 const CloudDevOpsPage = () => {
-  // const theme = useTheme();
-  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+
   const navigate = useNavigate();
 
-  // AWS Services experience
+
   const awsServices = [
     {
       name: "S3 (Simple Storage Service)",
@@ -64,12 +64,12 @@ const CloudDevOpsPage = () => {
     }
   ];
 
-  // DevOps technologies
+
   const devOpsTechnologies = [
     {
       name: "Docker",
       icon: <DevicesIcon />,
-      color: "#2496ED", // Docker blue
+      color: "#2496ED",
       description: "Container technology for application packaging and deployment.",
       skills: [
         "Dockerfile creation",
@@ -85,7 +85,7 @@ const CloudDevOpsPage = () => {
     {
       name: "Kubernetes",
       icon: <AutorenewIcon />,
-      color: "#326CE5", // Kubernetes blue
+      color: "#326CE5",
       description: "Container orchestration platform for managing deployments at scale.",
       skills: [
         "Cluster deployment",
@@ -100,7 +100,7 @@ const CloudDevOpsPage = () => {
     {
       name: "CI/CD Pipelines",
       icon: <SyncIcon />,
-      color: "#FF6D00", // Orange
+      color: "#FF6D00",
       description: "Continuous integration and deployment workflows for automated testing and deployment.",
       skills: [
         "GitHub Actions",
@@ -115,7 +115,7 @@ const CloudDevOpsPage = () => {
     {
       name: "Infrastructure as Code",
       icon: <SettingsSuggestIcon />,
-      color: "#7B1FA2", // Purple
+      color: "#7B1FA2",
       description: "Managing and provisioning infrastructure through code rather than manual processes.",
       skills: [
         "Terraform",
@@ -129,7 +129,7 @@ const CloudDevOpsPage = () => {
     }
   ];
 
-  // Project implementations
+
   const projectImplementations = [
     {
       name: "RAG-based Chatbot Cloud Infrastructure",

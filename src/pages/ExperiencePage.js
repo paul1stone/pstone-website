@@ -1,4 +1,4 @@
-// src/pages/ExperiencePage.js
+
 import React from 'react';
 import {
   Container,
@@ -29,12 +29,12 @@ import CodeIcon from '@mui/icons-material/Code';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 
-// Import your profile image if needed
+
 import profilePhoto from '../images/hs.jpeg';
 
 const ExperiencePage = () => {
-  // const theme = useTheme();
-  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+
   const navigate = useNavigate();
 
   return (

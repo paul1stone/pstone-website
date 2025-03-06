@@ -1,4 +1,4 @@
-// src/pages/WebDevelopmentPage.js
+
 import React from 'react';
 import {
   Container,
@@ -29,11 +29,11 @@ import CloudIcon from '@mui/icons-material/Cloud';
 import { useNavigate } from 'react-router-dom';
 
 const WebDevelopmentPage = () => {
-  // const theme = useTheme();
-  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+
   const navigate = useNavigate();
 
-  // Web technologies proficiency data
+
   const webTechnologies = [
     {
       category: "Frontend Frameworks & Libraries",
@@ -108,7 +108,7 @@ const WebDevelopmentPage = () => {
     }
   ];
 
-  // Web development projects
+
   const webProjects = [
     {
       name: "Agario Game Clone",

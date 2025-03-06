@@ -1,4 +1,4 @@
-// src/pages/ProgrammingLanguagesPage.js
+
 import React from 'react';
 import {
   Container,
@@ -26,11 +26,11 @@ import DataObjectIcon from '@mui/icons-material/DataObject';
 import { useNavigate } from 'react-router-dom';
 
 const ProgrammingLanguagesPage = () => {
-  // const theme = useTheme();
-  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+
   const navigate = useNavigate();
 
-  // Programming language proficiency data
+
   const languages = [
     {
       name: "Python",
@@ -82,7 +82,7 @@ const ProgrammingLanguagesPage = () => {
     }
   ];
 
-  // Categories of programming paradigms I'm familiar with
+
   const programmingParadigms = [
     {
       name: "Object-Oriented Programming",
