@@ -131,7 +131,7 @@ function ChatInterface() {
           <Box>
             <Typography variant="h5">AI Paul</Typography>
             <Typography variant="subtitle2" color="text.secondary">
-              Your personal AI assistant
+              Paul's AI assistant
             </Typography>
           </Box>
         </Box>

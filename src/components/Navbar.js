@@ -45,7 +45,7 @@ const PAGES = [
   { name: "RAG Chatbot", route: "/projects/chatbot" },
   { name: "Agario Game Clone", route: "/projects/agario" },
   { name: "Secret Santa App", route: "/projects/santa" },
-  { name: "IoT Energy Monitoring", route: "/projects/iot" },
+  { name: "Algorithm Visualization", route: "/projects/algorithm-visualization" },
   { name: "Experience", route: "/experience" },
   { name: "Zeta Global", route: "/experience/zeta" },
   { name: "Cornell Research", route: "/experience/cornell" },
@@ -254,7 +254,7 @@ function Navbar() {
                   <MenuItem onClick={handleMenuItemClick('/projects/chatbot')}>RAG Chatbot</MenuItem>
                   <MenuItem onClick={handleMenuItemClick('/projects/agario')}>Agario Game Clone</MenuItem>
                   <MenuItem onClick={handleMenuItemClick('/projects/santa')}>Secret Santa App</MenuItem>
-                  <MenuItem onClick={handleMenuItemClick('/projects/iot')}>IoT Energy Monitoring</MenuItem>
+                  <MenuItem onClick={handleMenuItemClick('/projects/algorithm-visualization')}>Algorithm Visualization</MenuItem>
                 </MenuList>
               </Paper>
             </Grow>
