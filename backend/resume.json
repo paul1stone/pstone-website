@@ -1,0 +1,123 @@
+{
+  "name": "Paul Stone",
+  "title": "Computer Science Student",
+  "contact": {
+    "phone": "540-395-6720",
+    "email": "pws59@cornell.edu"
+  },
+  "summary": "Computer Science student at Cornell University with experience in Machine Learning, AI, and cloud technologies. Skilled in developing RAG-based chatbots and working with various AWS services.",
+  "education": [
+    {
+      "degree": "B.S. in Computer Science",
+      "institution": "Cornell University, College of Engineering",
+      "duration": "August 2021 - May 2025",
+      "coursework": "Data Structures, Algorithms, Machine Learning, Artificial Intelligence, Systems Programming, Database Systems, PLL"
+    }
+  ],
+  "experience": [
+    {
+      "position": "Machine Learning Engineer Intern",
+      "company": "Zeta Global",
+      "duration": "June 2024 - August 2024",
+      "responsibilities": [
+        "Developed and optimized a RAG-based chat-bot using AWS Bedrock and Dockerized microservices for deployment",
+        "Compared Assistant services performance across OpenAI/OpenAPI, AWS Bedrock, Claude, and other Large Language Models (LLM)",
+        "Deployed scalable Kubernetes clusters",
+        "Worked with CI/CD workflows for model training and deployment using GitHub Actions and Terraform",
+        "Worked closely with other engineers to integrate AWS services (S3, EC2, Lambda) into existing systems using IAM roles and role-based access control (RBAC)",
+        "Took part in daily stand-ups, code reviews, and the software development life cycle (SDLC)",
+        "Created an in-depth guide for future maintenance and upgrades on the chat-bot development process"
+      ]
+    },
+    {
+      "position": "Research Assistant",
+      "company": "Cornell University",
+      "location": "Ithaca, NY",
+      "duration": "February 2022 - May 2022",
+      "responsibilities": [
+        "Deployed a mesh network of distributed Internet of Things (IoT) microcontrollers across the Cornell campus to monitor energy usage which led to a 10% reduction in energy waste",
+        "Developed the microcontroller software using C++ with MQTT-based communication",
+        "Using data pipelines, visualized the data in graphs through Grafana dashboards"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Agario Game Clone",
+      "duration": "Spring 2021 - Fall 2023",
+      "description": [
+        "Developed an online game similar to agar.io using Angular and TypeScript",
+        "Implemented server communication through WebSockets which allowed for real-time gameplay",
+        "Created a robust database using MongoDB to manage users, scores, and game statistics",
+        "A local version was built using Docker which allowed for seamless unit tests and integration"
+      ]
+    },
+    {
+      "name": "Secret Santa App",
+      "duration": "Fall 2021 - Spring 2022",
+      "description": [
+        "Led a team of developers in designing a Secret Santa app using Agile methodology",
+        "Created Hamiltonian cycles to ensure that participant matching was optimal",
+        "Utilized React, AWS, Firebase, and FastAPI to build the backend",
+        "Created APIs and different design patterns to ensure perfect matching"
+      ]
+    }
+  ],
+  "skills": {
+    "programming_languages": [
+      "Python",
+      "OCaml",
+      "RISCV",
+      "x86",
+      "C/C++",
+      "Java",
+      "JavaScript",
+      "TypeScript"
+    ],
+    "web_development": [
+      "HTML",
+      "CSS",
+      "PHP",
+      "Svelte",
+      "React",
+      "Angular",
+      "FastAPI",
+      "Firebase"
+    ],
+    "databases": [
+      "MongoDB",
+      "SQL",
+      "MySQL",
+      "NoSQL"
+    ],
+    "cloud_services": [
+      "AWS (S3, EC2, Lambda)",
+      "Docker"
+    ],
+    "tools": [
+      "Vim",
+      "VSCode",
+      "Git",
+      "JIRA"
+    ],
+    "technical_knowledge": [
+      "Networks",
+      "Functional Programming",
+      "Computer Architecture",
+      "Artificial Intelligence",
+      "Machine Learning",
+      "System Design",
+      "OpenAI",
+      "LLMs"
+    ]
+  },
+  "extracurricular": [
+    {
+      "activity": "Varsity, Heavyweight Rowing, Cornell University",
+      "details": [
+        "Competed at the highest level of collegiate rowing",
+        "Worked closely with my team to achieve results both on and off the water"
+      ]
+    }
+  ]
+}
