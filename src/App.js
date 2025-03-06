@@ -2,7 +2,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import TabContent from './components/TabContent';
 import ChatInterface from './pages/ChatInterfacePage';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';

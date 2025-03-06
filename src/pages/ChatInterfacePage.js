@@ -13,6 +13,7 @@ import {
   Divider,
   CircularProgress
 } from '@mui/material';
+import PsychologyIcon from '@mui/icons-material/Psychology';
 import SendIcon from '@mui/icons-material/Send';
 import { motion } from 'framer-motion';
 import axios from 'axios';
@@ -25,7 +26,7 @@ function ChatInterface() {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Auto-scroll to bottom of messages
+  // Auto-scroll to bottom when messages update
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -34,43 +35,36 @@ function ChatInterface() {
     scrollToBottom();
   }, [messages]);
 
-  // Handle sending a new message
+  // Handle sending a message
   const handleSend = async () => {
     if (input.trim() === '' || isLoading) return;
 
-    // Add user message
     const userMessage = { id: messages.length + 1, text: input, sender: 'user' };
     setMessages(prev => [...prev, userMessage]);
-    const currentInput = input; // Store input value before clearing
+    const currentInput = input;
     setInput('');
     setIsLoading(true);
 
     try {
-      // Create conversation history for context
+      // Prepare conversation history for context
       const conversationHistory = messages.map(msg => ({
         role: msg.sender === 'ai' ? 'assistant' : 'user',
         content: msg.text
       }));
 
-      // Add the new user message
       conversationHistory.push({
         role: 'user',
         content: currentInput
       });
 
-      // Call your local Flask backend
+      // Call your Flask backend (currently using Anthropic Claude)
       const response = await axios.post(
         'http://localhost:5000/api/chat',
-        {
-          messages: conversationHistory
-        }
+        { messages: conversationHistory }
       );
 
-      // Extract the AI response from the response data
       let aiResponse = "I received your message, but I'm having trouble generating a response. Please try again.";
-
       if (response.data && response.data.content) {
-        // Anthropic API returns an array of content blocks
         aiResponse = response.data.content
           .filter(item => item.type === 'text')
           .map(item => item.text)
@@ -79,31 +73,22 @@ function ChatInterface() {
         throw new Error(response.data.error);
       }
 
-      // Add AI response to chat
-      const aiMessage = {
-        id: messages.length + 2,
-        text: aiResponse,
-        sender: 'ai'
-      };
-
+      const aiMessage = { id: messages.length + 2, text: aiResponse, sender: 'ai' };
       setMessages(prev => [...prev, aiMessage]);
     } catch (error) {
       console.error('Error calling backend:', error);
-
-      // Add error message
       const errorMessage = {
         id: messages.length + 2,
         text: `I'm sorry, I encountered an error: ${error.response?.data?.error || error.message || "Unknown error"}. Please try again.`,
         sender: 'ai'
       };
-
       setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Handle pressing Enter to send
+  // Handle Enter key press
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -112,21 +97,52 @@ function ChatInterface() {
   };
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4, height: 'calc(100vh - 150px)', display: 'flex', flexDirection: 'column' }}>
-      <Paper elevation={3} sx={{ p: 2, height: '100%', display: 'flex', flexDirection: 'column' }}>
-        <Typography variant="h5" gutterBottom>
-          AI Paul
-        </Typography>
+    <Container
+      maxWidth="md"
+      sx={{
+        mt: 4,
+        height: 'calc(100vh - 100px)',
+        display: 'flex',
+        flexDirection: 'column',
+        background: 'linear-gradient(135deg, #f5f7fa, #c3cfe2)',
+        borderRadius: 2,
+        boxShadow: 3,
+        p: 2
+      }}
+    >
+      <Paper
+        elevation={6}
+        sx={{
+          p: 3,
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          borderRadius: 2
+        }}
+      >
+        {/* Header */}
+        <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
+
+          <Avatar sx={{ bgcolor: 'primary.main', justifyContent: 'center' }}><PsychologyIcon sx={{ alignSelf: 'center' }} /></Avatar>
+          <Box>
+            <Typography variant="h5">AI Paul</Typography>
+            <Typography variant="subtitle2" color="text.secondary">
+              Your personal AI assistant
+            </Typography>
+          </Box>
+        </Box>
         <Divider />
 
         {/* Messages area */}
         <List sx={{
           flex: 1,
-          overflow: 'auto',
-          p: 2,
+          overflowY: 'auto',
+          mt: 2,
+          mb: 2,
           display: 'flex',
           flexDirection: 'column',
-          gap: 2
+          gap: 2,
+          px: 1
         }}>
           {messages.map((message) => (
             <motion.div
@@ -135,41 +151,30 @@ function ChatInterface() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <ListItem
-                alignItems="flex-start"
-                sx={{
+              <ListItem sx={{
+                display: 'flex',
+                justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start',
+                px: 0
+              }}>
+                <Box sx={{
                   display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start',
-                  p: 0
-                }}
-              >
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    gap: 2,
-                    maxWidth: '75%'
-                  }}
-                >
+                  alignItems: 'flex-end',
+                  gap: 1,
+                  maxWidth: '75%'
+                }}>
                   {message.sender === 'ai' && (
-                    <Avatar sx={{ bgcolor: 'primary.main' }}>AI</Avatar>
+                    <Avatar sx={{ bgcolor: 'primary.main', justifyContent: 'center' }}><PsychologyIcon sx={{ alignSelf: 'center' }} /></Avatar>
                   )}
-
-                  <Paper
-                    elevation={1}
-                    sx={{
-                      p: 2,
-                      bgcolor: message.sender === 'user' ? 'primary.light' : 'grey.100',
-                      borderRadius: 2,
-                      color: message.sender === 'user' ? 'white' : 'text.primary'
-                    }}
-                  >
-                    <Typography variant="body1" style={{ whiteSpace: 'pre-wrap' }}>
+                  <Paper elevation={2} sx={{
+                    p: 2,
+                    backgroundColor: message.sender === 'user' ? 'primary.main' : 'grey.100',
+                    borderRadius: 2,
+                    color: message.sender === 'user' ? 'white' : 'text.primary'
+                  }}>
+                    <Typography variant="body1" sx={{ whiteSpace: 'pre-wrap' }}>
                       {message.text}
                     </Typography>
                   </Paper>
-
                   {message.sender === 'user' && (
                     <Avatar sx={{ bgcolor: 'secondary.main' }}>U</Avatar>
                   )}
@@ -186,11 +191,7 @@ function ChatInterface() {
         </List>
 
         {/* Input area */}
-        <Box sx={{
-          mt: 2,
-          display: 'flex',
-          gap: 1
-        }}>
+        <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
           <TextField
             fullWidth
             variant="outlined"
@@ -201,13 +202,17 @@ function ChatInterface() {
             multiline
             maxRows={4}
             disabled={isLoading}
+            sx={{
+              backgroundColor: 'white',
+              borderRadius: 1
+            }}
           />
           <Button
             variant="contained"
             color="primary"
             onClick={handleSend}
             disabled={input.trim() === '' || isLoading}
-            sx={{ minWidth: '48px', height: '48px' }}
+            sx={{ minWidth: '56px', height: '56px', alignSelf: 'center' }}
           >
             <SendIcon />
           </Button>
