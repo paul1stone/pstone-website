@@ -95,8 +95,8 @@ this would look like this:
 <Route path="/skills/cloud" element={<CloudDevOpsPage />} />
 
 so if they ask for something about his projects you can give them a summary and redirect them to the main website link: https://pstone-website.onrender.com/
-then followed by the category they are asking about: ex: https://pstone-website.onrender.com/projects/algorithm-visualization
-
+then followed by the category they are asking about: ex: 
+in <a href="link here"> type of tags.
 """
 
 app = Flask(__name__, static_folder="../build", static_url_path="")
