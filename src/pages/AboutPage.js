@@ -14,9 +14,7 @@ import {
   ListItemText,
   Card,
   CardContent,
-  Button,
-  useTheme,
-  useMediaQuery
+  Button
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import PersonIcon from '@mui/icons-material/Person';
@@ -31,8 +29,8 @@ import { useNavigate } from 'react-router-dom';
 import profilePhoto from '../images/hs.jpeg';
 
 const AboutPage = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  // const theme = useTheme();
+  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
 
   return (

@@ -13,10 +13,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Button,
-  Divider,
-  useTheme,
-  useMediaQuery
+  Button
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import WorkIcon from '@mui/icons-material/Work';
@@ -31,8 +28,8 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 
 const ZetaExperiencePage = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  // const theme = useTheme();
+  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
 
   // Skills gained during this experience

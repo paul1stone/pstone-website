@@ -15,9 +15,7 @@ import {
   ListItemIcon,
   ListItemText,
   Button,
-  Avatar,
-  useTheme,
-  useMediaQuery
+  Avatar
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import CloudIcon from '@mui/icons-material/Cloud';
@@ -33,8 +31,8 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 
 const CloudDevOpsPage = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  // const theme = useTheme();
+  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
 
   // AWS Services experience

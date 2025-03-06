@@ -9,29 +9,25 @@ import {
   Card,
   CardContent,
   Chip,
-  Divider,
   LinearProgress,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  Button,
-  useTheme,
-  useMediaQuery
+  Button
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import CodeIcon from '@mui/icons-material/Code';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import TerminalIcon from '@mui/icons-material/Terminal';
-import StorageIcon from '@mui/icons-material/Storage';
 import JavascriptIcon from '@mui/icons-material/Javascript';
 import DataObjectIcon from '@mui/icons-material/DataObject';
 import { useNavigate } from 'react-router-dom';
 
 const ProgrammingLanguagesPage = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  // const theme = useTheme();
+  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
 
   // Programming language proficiency data

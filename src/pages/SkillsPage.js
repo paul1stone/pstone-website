@@ -11,9 +11,6 @@ import {
   CardActions,
   Chip,
   Button,
-  Divider,
-  useTheme,
-  useMediaQuery,
   Avatar
 } from '@mui/material';
 import { motion } from 'framer-motion';
@@ -27,8 +24,8 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 
 const SkillsPage = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  // const theme = useTheme();
+  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
 
   // Skill categories with details

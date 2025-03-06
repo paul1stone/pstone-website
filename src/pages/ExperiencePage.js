@@ -6,15 +6,9 @@ import {
   Box,
   Grid,
   Paper,
-  Card,
   CardContent,
-  CardMedia,
-  Chip,
   Button,
   Avatar,
-  Divider,
-  useTheme,
-  useMediaQuery
 } from '@mui/material';
 import {
   Timeline,
@@ -39,8 +33,8 @@ import { useNavigate } from 'react-router-dom';
 import profilePhoto from '../images/hs.jpeg';
 
 const ExperiencePage = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  // const theme = useTheme();
+  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
 
   return (
@@ -278,7 +272,7 @@ const ExperiencePage = () => {
               Key skills and knowledge acquired through my professional experiences:
             </Typography>
 
-            <Timeline position={isMobile ? "right" : "alternate"}>
+            <Timeline position={"alternate"}>
               <TimelineItem>
                 <TimelineOppositeContent sx={{ display: { xs: 'none', md: 'block' } }}>
                   <Typography variant="body2" color="text.secondary">

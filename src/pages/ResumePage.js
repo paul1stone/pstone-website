@@ -14,9 +14,7 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemText,
-  useTheme,
-  useMediaQuery
+  ListItemText
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import WorkIcon from '@mui/icons-material/Work';
@@ -40,8 +38,8 @@ import profilePhoto from '../images/hs.jpeg';
 import ResumeViewer from '../components/ResumeViewer';
 
 const ResumePage = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  // const theme = useTheme();
+  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
   const [viewerOpen, setViewerOpen] = useState(false);
   // Education data

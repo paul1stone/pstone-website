@@ -11,26 +11,15 @@ import {
   Paper,
   Card,
   CardContent,
-  CardMedia,
   Chip,
   Divider,
-  Timeline,
-  TimelineItem,
-  TimelineSeparator,
-  TimelineConnector,
-  TimelineContent,
-  TimelineDot,
-  TimelineOppositeContent,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  Button,
-  useTheme,
-  useMediaQuery
+  Button
 } from '@mui/material';
 import { motion } from 'framer-motion';
-import SportsCricketIcon from '@mui/icons-material/SportsCricket';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import GroupsIcon from '@mui/icons-material/Groups';
@@ -40,15 +29,15 @@ import SportsIcon from '@mui/icons-material/Sports';
 import { useNavigate } from 'react-router-dom';
 
 // Import profile photo if needed
-import profilePhoto from '../images/hs.jpeg';
+// import profilePhoto from '../images/hs.jpeg';
 
 // You can add rowing-specific images here
 // import cornellRowingImage from '../images/cornell-rowing.jpg';
 // import hillSchoolRowingImage from '../images/hill-school-rowing.jpg';
 
 const RowingPage = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  // const theme = useTheme();
+  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
 
   // Cornell rowing stats (update with your actual stats)
@@ -68,24 +57,24 @@ const RowingPage = () => {
   ];
 
   // Rowing career achievements
-  const achievements = [
-    {
-      title: "Cornell University Varsity Heavyweight",
-      description: "Competed at the highest level of collegiate rowing"
-    },
-    {
-      title: "The Hill School Varsity Team",
-      description: "Recognized for outstanding contributions to the rowing program"
-    },
-    {
-      title: "Eastern Sprints",
-      description: "Competed in one of rowing's premier collegiate regattas"
-    },
-    {
-      title: "IRA National Championship",
-      description: "Participated in the national championship regatta"
-    }
-  ];
+  // const achievements = [
+  //   {
+  //     title: "Cornell University Varsity Heavyweight",
+  //     description: "Competed at the highest level of collegiate rowing"
+  //   },
+  //   {
+  //     title: "The Hill School Varsity Team",
+  //     description: "Recognized for outstanding contributions to the rowing program"
+  //   },
+  //   {
+  //     title: "Eastern Sprints",
+  //     description: "Competed in one of rowing's premier collegiate regattas"
+  //   },
+  //   {
+  //     title: "IRA National Championship",
+  //     description: "Participated in the national championship regatta"
+  //   }
+  // ];
 
   return (
     <Box sx={{ py: 6, bgcolor: '#f5f5f5', minHeight: '100vh' }}>

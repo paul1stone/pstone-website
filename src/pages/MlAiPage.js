@@ -9,19 +9,15 @@ import {
   Card,
   CardContent,
   Chip,
-  Divider,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   Button,
-  Avatar,
-  useTheme,
-  useMediaQuery
+  Avatar
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import PsychologyIcon from '@mui/icons-material/Psychology';
-import DataObjectIcon from '@mui/icons-material/DataObject';
 import MemoryIcon from '@mui/icons-material/Memory';
 import StorageIcon from '@mui/icons-material/Storage';
 import CloudIcon from '@mui/icons-material/Cloud';
@@ -32,8 +28,8 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 
 const MlAiPage = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  // const theme = useTheme();
+  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
 
   // AI/ML technologies

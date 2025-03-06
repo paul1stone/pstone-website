@@ -8,20 +8,15 @@ import {
   Paper,
   Card,
   CardContent,
-  CardMedia,
   Chip,
-  Divider,
   LinearProgress,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  Button,
-  useTheme,
-  useMediaQuery
+  Button
 } from '@mui/material';
 import { motion } from 'framer-motion';
-import WebIcon from '@mui/icons-material/Web';
 import CodeIcon from '@mui/icons-material/Code';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -34,8 +29,8 @@ import CloudIcon from '@mui/icons-material/Cloud';
 import { useNavigate } from 'react-router-dom';
 
 const WebDevelopmentPage = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  // const theme = useTheme();
+  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
 
   // Web technologies proficiency data

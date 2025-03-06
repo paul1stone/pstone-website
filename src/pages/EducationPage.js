@@ -10,14 +10,11 @@ import {
   CardContent,
   CardMedia,
   Chip,
-  Divider,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  Button,
-  useTheme,
-  useMediaQuery
+  Button
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import SchoolIcon from '@mui/icons-material/School';
@@ -34,8 +31,8 @@ import { useNavigate } from 'react-router-dom';
 // import cornellImage from '../images/cornell.jpg';
 
 const EducationPage = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  // const theme = useTheme();
+  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
 
   // Course details with descriptions
