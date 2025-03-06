@@ -1,6 +1,5 @@
 // src/components/Navbar.js
-
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import profilePhoto from '../images/hs.jpeg';
 import {
   AppBar,
@@ -31,8 +30,9 @@ import PersonIcon from '@mui/icons-material/Person';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { useNavigate } from 'react-router-dom';
+import Fuse from 'fuse.js';
 
-// 1) Define a list of pages/routes you want to search
+// 1) Define the list of pages/routes you want to search
 const PAGES = [
   { name: "Home", route: "/" },
   { name: "About Me", route: "/about" },
@@ -54,6 +54,13 @@ const PAGES = [
   { name: "Chat with AI Paul", route: "/chat" }
 ];
 
+// 2) Fuse.js options
+const fuseOptions = {
+  includeScore: true,     // Provides a 'score' for how close the match is
+  threshold: 0.3,         // Lower = stricter matching; Higher = fuzzier
+  keys: ['name']          // Fields in 'PAGES' to match against
+};
+
 function Navbar() {
   const navigate = useNavigate();
   const theme = useTheme();
@@ -72,7 +79,7 @@ function Navbar() {
     chat: useRef(null)
   };
 
-  // Handle mouse enter for button (desktop)
+  // Handle mouse enter (desktop)
   const handleMouseEnter = (menuId) => () => {
     if (!isMobile) {
       setOpenMenu(menuId);
@@ -86,14 +93,14 @@ function Navbar() {
     }
   };
 
-  // Handle mouse leave for the entire nav area (desktop)
+  // Handle mouse leave (desktop)
   const handleNavMouseLeave = () => {
     if (!isMobile) {
       setOpenMenu(null);
     }
   };
 
-  // Handle navigation from menu item
+  // Handle navigation
   const handleMenuItemClick = (path) => () => {
     setOpenMenu(null);
     setMobileMenuOpen(false);
@@ -109,11 +116,14 @@ function Navbar() {
   };
 
   // ---------------------------------------
-  // SEARCH STATE & FUNCTIONS
+  // SEARCH STATE & FUSE.JS
   // ---------------------------------------
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const searchInputRef = useRef(null);
+
+  // Create the Fuse instance once (with useMemo) to avoid recreating it on every render
+  const fuse = useMemo(() => new Fuse(PAGES, fuseOptions), []);
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
@@ -125,14 +135,12 @@ function Navbar() {
       return;
     }
 
-    // Filter pages by name (case-insensitive substring match)
-    const filtered = PAGES.filter((page) =>
-      page.name.toLowerCase().includes(value.toLowerCase())
-    );
-    setSearchResults(filtered);
+    // Use Fuse.js to get fuzzy matches
+    const results = fuse.search(value).map((result) => result.item);
+    setSearchResults(results);
   };
 
-  // Main navbar content (desktop & mobile)
+  // Main navbar content
   const navbarContent = (
     <>
       {/* About Me */}
@@ -142,7 +150,7 @@ function Navbar() {
           color="inherit"
           onClick={handleMenuItemClick('/about')}
           onMouseDown={(e) => {
-            // Prevent navigation if clicking to open dropdown on mobile
+            // Prevent immediate navigation if tapping to open dropdown on mobile
             if (isMobile) {
               e.preventDefault();
               handleButtonClick('about')();
@@ -162,10 +170,7 @@ function Navbar() {
           style={{ zIndex: 1300 }}
         >
           {({ TransitionProps }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: 'left top' }}
-            >
+            <Grow {...TransitionProps} style={{ transformOrigin: 'left top' }}>
               <Paper sx={{ mt: 0.5, width: 200 }}>
                 <MenuList>
                   <MenuItem onClick={handleMenuItemClick('/about')}>Profile</MenuItem>
@@ -185,7 +190,6 @@ function Navbar() {
           color="inherit"
           onClick={handleMenuItemClick('/skills')}
           onMouseDown={(e) => {
-            // Prevent navigation if clicking to open dropdown on mobile
             if (isMobile) {
               e.preventDefault();
               handleButtonClick('skills')();
@@ -205,10 +209,7 @@ function Navbar() {
           style={{ zIndex: 1300 }}
         >
           {({ TransitionProps }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: 'left top' }}
-            >
+            <Grow {...TransitionProps} style={{ transformOrigin: 'left top' }}>
               <Paper sx={{ mt: 0.5, width: 220 }}>
                 <MenuList>
                   <MenuItem onClick={handleMenuItemClick('/skills/programming')}>Programming Languages</MenuItem>
@@ -229,7 +230,6 @@ function Navbar() {
           color="inherit"
           onClick={handleMenuItemClick('/projects')}
           onMouseDown={(e) => {
-            // Prevent navigation if clicking to open dropdown on mobile
             if (isMobile) {
               e.preventDefault();
               handleButtonClick('projects')();
@@ -249,10 +249,7 @@ function Navbar() {
           style={{ zIndex: 1300 }}
         >
           {({ TransitionProps }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: 'left top' }}
-            >
+            <Grow {...TransitionProps} style={{ transformOrigin: 'left top' }}>
               <Paper sx={{ mt: 0.5, width: 200 }}>
                 <MenuList>
                   <MenuItem onClick={handleMenuItemClick('/projects/chatbot')}>RAG Chatbot</MenuItem>
@@ -273,7 +270,6 @@ function Navbar() {
           color="inherit"
           onClick={handleMenuItemClick('/experience')}
           onMouseDown={(e) => {
-            // Prevent navigation if clicking to open dropdown on mobile
             if (isMobile) {
               e.preventDefault();
               handleButtonClick('experience')();
@@ -293,10 +289,7 @@ function Navbar() {
           style={{ zIndex: 1300 }}
         >
           {({ TransitionProps }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: 'left top' }}
-            >
+            <Grow {...TransitionProps} style={{ transformOrigin: 'left top' }}>
               <Paper sx={{ mt: 0.5, width: 200 }}>
                 <MenuList>
                   <MenuItem onClick={handleMenuItemClick('/experience/zeta')}>Zeta Global</MenuItem>
@@ -462,7 +455,7 @@ function Navbar() {
                       key={item.route}
                       onClick={() => {
                         navigate(item.route);
-                        // Clear the search
+                        // Clear the search after navigating
                         setSearchTerm("");
                         setSearchResults([]);
                       }}
