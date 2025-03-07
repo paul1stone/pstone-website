@@ -195,22 +195,15 @@ const AboutPage = () => {
                 </Box>
 
                 <Typography variant="body1" paragraph>
-                  I'm a Computer Science student at Cornell University with a passion for machine learning
-                  and artificial intelligence. My academic journey has focused on developing practical
-                  applications that leverage AI technologies to solve real-world problems.
+                  I am a current Senior at Cornell University studying Computer Science. I am really interested in the fields of Machine Learning and AI. I have worked in both the full stack and ML fields have experience in both.
                 </Typography>
 
                 <Typography variant="body1" paragraph>
-                  During my time at Zeta Global as a Machine Learning Engineer Intern, I developed a
-                  RAG-based chatbot using AWS Bedrock and worked with various LLM platforms to optimize
-                  assistant services. This experience deepened my understanding of how AI can be effectively
-                  deployed in production environments.
+                  Most recently, I was able to work at Zeta Global as a Machine Learning Engineer Intern. While I was working there, I was put on a team building RAG-based chatbots. We were able to optimize and build the chatbot up and integrate in assistants for the chatbot. This internship gave me great experience in how AI can be used in the workflow.
                 </Typography>
 
                 <Typography variant="body1" paragraph>
-                  Beyond technical skills, I value collaborative problem-solving and clean, efficient code.
-                  My background in competitive rowing has instilled discipline and teamwork values that
-                  I bring to all my technical projects.
+                  Outside of the technical aspects, I really enjoy creating projects in my free time. I spend most of my time working on projects or rowing. My background in rowing has allowed me to gain discipline and teamwork skills like no other.
                 </Typography>
 
                 <Divider sx={{ my: 3 }} />

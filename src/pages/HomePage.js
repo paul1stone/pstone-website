@@ -63,7 +63,7 @@ const HomePage = () => {
                   CS Student & Machine Learning Engineer
                 </Typography>
                 <Typography variant="body1" paragraph sx={{ mb: 4, maxWidth: '600px' }}>
-                  Cornell University student specializing in Machine Learning and AI development. Experienced in
+                  I am a Cornell University student specializing in Machine Learning and AI development. I have experience in
                   building RAG-based chatbots, cloud infrastructure, and full-stack applications.
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
@@ -354,10 +354,10 @@ const HomePage = () => {
             }}
           >
             <Typography variant="h5" gutterBottom sx={{ fontWeight: 500 }}>
-              Want to learn more about me?
+              Talk to my AI chatbot that can answer questions about me!
             </Typography>
             <Typography variant="body1" sx={{ mb: 3, maxWidth: '700px', mx: 'auto' }}>
-              Try out my AI assistant that can answer questions about my background, skills, and projects.
+              Covers my background, skills, and projects.
             </Typography>
             <Button
               variant="contained"

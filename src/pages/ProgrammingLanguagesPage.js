@@ -195,11 +195,11 @@ const ProgrammingLanguagesPage = () => {
                       <Typography variant="body2" color="text.secondary">
                         Proficiency
                       </Typography>
-                      <Typography variant="body2" fontWeight="medium">
+                      {/* <Typography variant="body2" fontWeight="medium">
                         {language.proficiency}%
-                      </Typography>
+                      </Typography> */}
                     </Box>
-                    <LinearProgress
+                    {/* <LinearProgress
                       variant="determinate"
                       value={language.proficiency}
                       sx={{
@@ -210,7 +210,7 @@ const ProgrammingLanguagesPage = () => {
                           bgcolor: '#1A237E'
                         }
                       }}
-                    />
+                    /> */}
                   </Box>
 
                   <Typography variant="body1" paragraph>

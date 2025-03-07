@@ -223,14 +223,14 @@ const WebDevelopmentPage = () => {
 
                         <Box sx={{ mb: 3 }}>
                           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-                            <Typography variant="body2" color="text.secondary">
+                            {/* <Typography variant="body2" color="text.secondary">
                               Proficiency
-                            </Typography>
-                            <Typography variant="body2" fontWeight="medium">
+                            </Typography> */}
+                            {/* <Typography variant="body2" fontWeight="medium">
                               {tech.proficiency}%
-                            </Typography>
+                            </Typography> */}
                           </Box>
-                          <LinearProgress
+                          {/* <LinearProgress
                             variant="determinate"
                             value={tech.proficiency}
                             sx={{
@@ -241,7 +241,7 @@ const WebDevelopmentPage = () => {
                                 bgcolor: '#1A237E'
                               }
                             }}
-                          />
+                          /> */}
                         </Box>
 
                         <Typography variant="body2" paragraph>
