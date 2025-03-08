@@ -138,15 +138,11 @@ const EducationPage = () => {
                     </Typography>
                   </Box>
                   <Typography variant="body1" paragraph>
-                    Pursuing a Bachelor of Science degree in Computer Science with a focus on
+                    I am getting my Bachelors of Science degree in Computer Science with a focus on
                     Machine Learning, Artificial Intelligence, and Cloud Computing technologies.
-                    The program emphasizes both theoretical foundations and practical applications
-                    in these cutting-edge fields.
                   </Typography>
                   <Typography variant="body1" paragraph>
-                    Cornell University's Computer Science program is known for its rigorous curriculum
-                    and research opportunities, preparing students for careers in software development,
-                    data science, and advanced computing technologies.
+                    I have enjoyed Cornell University's Computer Science curriculum and research opportunities. It has given me a greater understanding in software development, data science, and advanced computing technologies.
                   </Typography>
                   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 3 }}>
                     <Chip label="Class of 2025" color="primary" size="small" />
@@ -174,9 +170,7 @@ const EducationPage = () => {
             </Box>
 
             <Typography variant="body1" paragraph>
-              My academic curriculum includes a comprehensive range of computer science courses with
-              a special emphasis on AI, ML, and software engineering. Below are some of the key courses
-              I've taken:
+              My classes include a range of computer science courses with a focus on AI, ML, and software engineering:
             </Typography>
 
             <Grid container spacing={3}>

@@ -131,9 +131,7 @@ const RowingPage = () => {
                 From The Hill School to Cornell University
               </Typography>
               <Typography variant="body1" sx={{ maxWidth: '800px', mb: 3 }}>
-                My rowing journey spans eight years of dedication, discipline, and teamwork.
-                Starting at The Hill School and continuing through Cornell University, rowing has been
-                a fundamental part of my development both as an athlete and as a person.
+                I have rowed for 8 years now which has given me a new understanding of dedication, discipline, and teamwork. When I started at The Hill School I was a freshman in highschool and now I have continued to row through Cornell which has given me a fundamental understanding of how to see things through.
               </Typography>
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 3 }}>
                 <Chip
@@ -141,7 +139,7 @@ const RowingPage = () => {
                   sx={{ bgcolor: 'rgba(255,255,255,0.2)', color: 'white' }}
                 />
                 <Chip
-                  label="Team Leadership"
+                  label="Leadership"
                   sx={{ bgcolor: 'rgba(255,255,255,0.2)', color: 'white' }}
                 />
                 <Chip
@@ -196,22 +194,15 @@ const RowingPage = () => {
                 </Box>
 
                 <Typography variant="body1" paragraph>
-                  As a member of Cornell's Varsity Heavyweight Rowing team, I've competed at the highest
-                  level of collegiate rowing. The program is known for its rigorous training regimen and
-                  competitive spirit in the Ivy League and beyond.
+
+                  While on the Cornell Heavyweight Rowing team I have competed at the highest
+                  level of collegiate rowing. To get there, we trained both our bodies and mindset to the absolute limit.
                 </Typography>
 
                 <Typography variant="body1" paragraph>
-                  Rowing for Cornell has taught me invaluable lessons about perseverance, teamwork, and
-                  pushing beyond perceived limitations. Every day on the water requires perfect synchronization
-                  with teammates and unwavering commitment to collective success.
+                  While rowing for Cornell I have been taught invaluable lessons about teamwork, perseverance, and
+                  pushing beyond my limitations.
                 </Typography>
-
-                <Typography variant="body1" paragraph>
-                  Our team competes in prestigious regattas including Eastern Sprints and the IRA National Championship,
-                  facing off against the best crews in the country.
-                </Typography>
-
                 <Box sx={{ mt: 4 }}>
                   <Typography variant="h6" gutterBottom sx={{ fontWeight: 'medium' }}>
                     Key Competitions
@@ -240,8 +231,8 @@ const RowingPage = () => {
                         <EmojiEventsIcon color="primary" />
                       </ListItemIcon>
                       <ListItemText
-                        primary="Ivy League Championships"
-                        secondary="Competition among all Ivy League rowing programs"
+                        primary="Head of the Charles"
+                        secondary="5k head race on the Charles in boston"
                       />
                     </ListItem>
                   </List>
@@ -318,9 +309,6 @@ const RowingPage = () => {
                     mt: 2
                   }}
                 />
-                <Typography variant="body2" color="text.secondary">
-                  Cornell Rowing Image
-                </Typography>
               </Paper>
             </motion.div>
           </Grid>
@@ -343,20 +331,12 @@ const RowingPage = () => {
             <Grid container spacing={4}>
               <Grid item xs={12} md={7}>
                 <Typography variant="body1" paragraph>
-                  My rowing career began at The Hill School, where I was a four-year member of the rowing
-                  program. The foundation of my rowing technique, discipline, and work ethic was established
-                  during these formative years.
+                  When I walked onto the Hill School rowing team, it was still in its early stages of development. The team was quite small with no notable wins or placements under its belt. I knew coming in that we would face challenges due to all of this, but instead of shying away from greatness, we as a team hit it head on and learned valuable lessons. The very foundation of my rowing technique, discipline, and work ethic was established during these times.
                 </Typography>
 
                 <Typography variant="body1" paragraph>
-                  At The Hill School, I was recognized for outstanding contributions to the rowing program,
-                  developing from a novice rower to a key member of the varsity squad. The experience taught me
-                  fundamental skills that would serve me well at the collegiate level.
-                </Typography>
-
-                <Typography variant="body1" paragraph>
-                  The Hill School's rowing program competed in various scholastic regattas, providing
-                  valuable racing experience and competitive development opportunities.
+                  While rowing at The Hill School, I was recognized for my outstanding contributions to the rowing program,
+                  developing from a novice rower to a key member of the varsity squad.
                 </Typography>
 
                 <List>

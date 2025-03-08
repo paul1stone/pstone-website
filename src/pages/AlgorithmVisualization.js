@@ -16,26 +16,30 @@ import { motion } from 'framer-motion';
 import SudokuSolver from '../components/SudokuSolver';
 import AStarPathfinding from '../components/AStarPathfinding';
 import SortingVisualizer from '../components/SortingVisualizer';
+import MinimumSpanningTreeVisualizer from '../components/MinimumSpanningTreeVisualizer';
 
 
 const AlgorithmVisualizationPage = () => {
-  const [selectedAlgo, setSelectedAlgo] = useState('sudoku');
+  const [selectedAlgo, setSelectedAlgo] = useState('astar');
 
   const algorithms = [
-    { id: 'sudoku', name: 'Sudoku Solver' },
     { id: 'astar', name: 'A* Pathfinding' },
+    { id: 'sudoku', name: 'Sudoku Solver' },
     { id: 'sorting', name: 'Sorting Algorithms' },
-    { id: 'coming-soon-2', name: 'Coming Soon: Graph Traversal' }
+    { id: 'mst', name: 'Minimum Spanning Tree (Prim vs Kruskal)' },
+    { id: 'coming-soon-2', name: 'Coming Soon: BFS & DFS Traversal' }
   ];
 
   const renderSelectedAlgorithm = () => {
     switch (selectedAlgo) {
-      case 'sudoku':
-        return <SudokuSolver />;
       case 'astar':
         return <AStarPathfinding />;
+      case 'sudoku':
+        return <SudokuSolver />;
       case 'sorting':
         return <SortingVisualizer />;
+      case 'mst':
+        return <MinimumSpanningTreeVisualizer />;
       case 'coming-soon-2':
         return (
           <Box
@@ -81,12 +85,10 @@ const AlgorithmVisualizationPage = () => {
               textAlign: { xs: 'center', md: 'left' }
             }}
           >
-            Algorithm Visualization Lab
+            Algorithm Visualization
           </Typography>
           <Typography variant="body1" paragraph sx={{ mb: 4 }}>
-            Interactive visualizations of common algorithms to help understand how they work.
-            These demos show the step-by-step execution of algorithms, making it easier to
-            understand their inner workings and efficiency.
+            Some common Algos that I have come across in school and have made visualizations for.
           </Typography>
         </motion.div>
 
@@ -126,8 +128,7 @@ const AlgorithmVisualizationPage = () => {
                   About This Project
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  This lab helps visualize how different algorithms work through interactive demonstrations.
-                  Select an algorithm from the dropdown above to get started.
+                  This project helps visualize how different algorithms work through interactive demonstrations.
                 </Typography>
 
                 <Box sx={{ mt: 3 }}>
@@ -136,8 +137,7 @@ const AlgorithmVisualizationPage = () => {
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     These visualizations are built using React and focus on showing the
-                    step-by-step process of each algorithm. The code is structured to highlight
-                    the core logic while providing an intuitive interface for exploration.
+                    step-by-step process of each algorithm.
                   </Typography>
                 </Box>
               </Paper>
@@ -170,80 +170,7 @@ const AlgorithmVisualizationPage = () => {
         </Grid>
 
         {/* Technical write-up section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <Paper elevation={3} sx={{ p: 4, mt: 5, borderRadius: 2 }}>
-            <Typography variant="h5" fontWeight="bold" mb={3}>
-              Technical Implementation
-            </Typography>
 
-            <Typography variant="body1" paragraph>
-              The algorithm visualizations in this lab are implemented using React and JavaScript. Each algorithm
-              is broken down into discrete steps that can be visualized sequentially, allowing users to understand
-              how the algorithm progresses and makes decisions.
-            </Typography>
-
-            <Typography variant="h6" fontWeight="bold" mt={4} mb={2}>
-              Sudoku Solver Implementation
-            </Typography>
-
-            <Typography variant="body1" paragraph>
-              The Sudoku solver uses a backtracking algorithm to find solutions to the puzzle. Here's how it works:
-            </Typography>
-
-            <Box component="ol" sx={{ pl: 4, mb: 3 }}>
-              <Typography component="li" variant="body1" mb={1}>
-                The solver attempts to place numbers 1-9 in empty cells.
-              </Typography>
-              <Typography component="li" variant="body1" mb={1}>
-                Before placing a number, it checks if that number can be placed in the current cell according to Sudoku rules.
-              </Typography>
-              <Typography component="li" variant="body1" mb={1}>
-                If a number can be placed, it moves to the next cell.
-              </Typography>
-              <Typography component="li" variant="body1" mb={1}>
-                If no number can be placed, it backtracks to the previous cell and tries a different number.
-              </Typography>
-              <Typography component="li" variant="body1" mb={1}>
-                This process continues until the entire board is filled or no solution is found.
-              </Typography>
-            </Box>
-
-            <Typography variant="body1" paragraph>
-              The visualization captures each attempt and backtrack, allowing users to see how the algorithm
-              explores different possibilities and eventually finds a solution.
-            </Typography>
-
-            <Typography variant="h6" fontWeight="bold" mt={4} mb={2}>
-              A* Pathfinding (Coming Soon)
-            </Typography>
-
-            <Typography variant="body1" paragraph>
-              The A* pathfinding algorithm will visualize how a computer finds the shortest path between two points
-              in a grid with obstacles. This implementation will showcase:
-            </Typography>
-
-            <Box component="ul" sx={{ pl: 4, mb: 3 }}>
-              <Typography component="li" variant="body1" mb={1}>
-                How the algorithm uses a heuristic function to estimate the distance to the goal
-              </Typography>
-              <Typography component="li" variant="body1" mb={1}>
-                The process of exploring nodes and updating the path
-              </Typography>
-              <Typography component="li" variant="body1" mb={1}>
-                How A* efficiently finds the optimal path by prioritizing promising directions
-              </Typography>
-            </Box>
-
-            <Typography variant="body1">
-              The visualizations are designed to be educational and interactive, with controls for stepping through
-              the algorithm manually or watching an automated animation at various speeds.
-            </Typography>
-          </Paper>
-        </motion.div>
       </Container>
     </Box>
   );

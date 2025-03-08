@@ -254,10 +254,10 @@ function Navbar() {
             <Grow {...TransitionProps} style={{ transformOrigin: 'left top' }}>
               <Paper sx={{ mt: 0.5, width: 200 }}>
                 <MenuList>
-                  <MenuItem onClick={handleMenuItemClick('/projects/chatbot')}>RAG Chatbot</MenuItem>
+                  <MenuItem onClick={handleMenuItemClick('/projects/algorithm-visualization')}>Algorithm Visualization</MenuItem>
                   <MenuItem onClick={handleMenuItemClick('/projects/agario')}>Agario Game Clone</MenuItem>
                   <MenuItem onClick={handleMenuItemClick('/projects/santa')}>Secret Santa App</MenuItem>
-                  <MenuItem onClick={handleMenuItemClick('/projects/algorithm-visualization')}>Algorithm Visualization</MenuItem>
+                  <MenuItem onClick={handleMenuItemClick('/chat')}>RAG Chatbot</MenuItem>
                 </MenuList>
               </Paper>
             </Grow>

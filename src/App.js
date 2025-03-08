@@ -17,6 +17,8 @@ import ZetaExperiencePage from './pages/ZetaExperiencePage';
 import CornellExperiencePage from './pages/CornellExperiencePage';
 import ResumePage from './pages/ResumePage';
 import ProjectsPage from './pages/ProjectsPage';
+import SecretSanta from './pages/SecretSantaPage';
+import AgarioClonePage from './pages/AgarioClonePage';
 import AlgorithmVisualization from './pages/AlgorithmVisualization';
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
 
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/projects/algorithm-visualization" element={<AlgorithmVisualization />} />
+        <Route path="/projects/santa" element={<SecretSanta />} />
+        <Route path="/projects/agario" element={<AgarioClonePage />} />
 
         <Route path="/experience" element={<ExperiencePage />} />
         <Route path="/experience/zeta" element={<ZetaExperiencePage />} />
