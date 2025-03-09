@@ -133,12 +133,7 @@ const ProjectsPage = () => {
             </Typography>
             <Typography variant="body1" paragraph>
               Below are some of my key projects that showcase my technical skills and problem-solving abilities.
-              These projects span various domains including machine learning, web development, and IoT.
-            </Typography>
-            <Typography variant="body1">
-              Each project demonstrates different aspects of my technical expertise, from AI and cloud technologies to
-              full-stack development and algorithm implementation. Click on a project to learn more about its
-              architecture, technologies, and my specific contributions.
+              These projects cover various topics including machine learning, web development, and IoT.
             </Typography>
           </Paper>
         </motion.div>
@@ -167,12 +162,12 @@ const ProjectsPage = () => {
                     overflow: 'hidden'
                   }}
                 >
-                  <CardMedia
+                  {/* <CardMedia
                     component="img"
                     height="200"
                     image={project.image}
                     alt={project.title}
-                  />
+                  /> */}
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 'bold' }}>
                       {project.title}
