@@ -1112,10 +1112,6 @@ const AgarioClonePage = () => {
               Rendering and Animation
             </Typography>
 
-            <Typography variant="body1" paragraph>
-              The game uses the HTML5 Canvas API for rendering, with a custom game loop implemented using
-              requestAnimationFrame. The rendering process involves:
-            </Typography>
 
             <Box component="ul" sx={{ pl: 4, mb: 3 }}>
               <Typography component="li" variant="body1" mb={1}>
@@ -1125,7 +1121,7 @@ const AgarioClonePage = () => {
                 Implementing efficient rendering by only drawing objects visible within the viewport
               </Typography>
               <Typography component="li" variant="body1" mb={1}>
-                Using delta-time calculations to ensure consistent animation speeds regardless of frame rate
+                Using time calculations to ensure consistent animation speeds regardless of frame rate
               </Typography>
               <Typography component="li" variant="body1" mb={1}>
                 Drawing cells with dynamic sizing based on mass, with names and borders

@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import BfsVsDfsVisualizer from '../components/BfsVsDfsVisualizer';
 import {
   Container,
   Typography,
@@ -24,10 +25,12 @@ const AlgorithmVisualizationPage = () => {
 
   const algorithms = [
     { id: 'astar', name: 'A* Pathfinding' },
+
     { id: 'sudoku', name: 'Sudoku Solver' },
     { id: 'sorting', name: 'Sorting Algorithms' },
     { id: 'mst', name: 'Minimum Spanning Tree (Prim vs Kruskal)' },
-    { id: 'coming-soon-2', name: 'Coming Soon: BFS & DFS Traversal' }
+    { id: 'bfs-dfs', name: 'BFS vs DFS Search' },
+    // { id: 'coming-soon-2', name: 'Coming Soon: BFS & DFS Traversal' }
   ];
 
   const renderSelectedAlgorithm = () => {
@@ -40,6 +43,8 @@ const AlgorithmVisualizationPage = () => {
         return <SortingVisualizer />;
       case 'mst':
         return <MinimumSpanningTreeVisualizer />;
+      case 'bfs-dfs':
+        return <BfsVsDfsVisualizer />;
       case 'coming-soon-2':
         return (
           <Box

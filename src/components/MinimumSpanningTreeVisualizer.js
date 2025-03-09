@@ -33,7 +33,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 const MinimumSpanningTreeVisualizer = () => {
-  // Constants
+
   const CANVAS_WIDTH = 800;
   const CANVAS_HEIGHT = 500;
   const NODE_RADIUS = 20;
@@ -43,7 +43,7 @@ const MinimumSpanningTreeVisualizer = () => {
   const MIN_EDGE_WEIGHT = 1;
 
 
-  // Node status colors
+
   const COLORS = {
     NORMAL: '#757575',
     ACTIVE: '#2196f3',
@@ -58,7 +58,7 @@ const MinimumSpanningTreeVisualizer = () => {
     WEIGHT_COLOR: '#212121'
   };
 
-  // States for visualization
+
   const [graph, setGraph] = useState({ vertices: [], edges: [] });
   const [algorithms] = useState([
     { id: 'prim', name: "Prim's Algorithm", color: '#2196f3' },
@@ -74,23 +74,23 @@ const MinimumSpanningTreeVisualizer = () => {
   const [infoDialogOpen, setInfoDialogOpen] = useState(false);
   const [showDebug, setShowDebug] = useState(false);
 
-  // Refs
+
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
   const isDraggingRef = useRef(false);
   const draggedNodeRef = useRef(null);
 
-  // Generate a random graph
+
   useEffect(() => {
     generateRandomGraph();
   }, [vertexCount, edgeProbability]);
 
-  // Render graph whenever graph changes
+
   useEffect(() => {
     renderGraph();
   }, [graph, algorithmStates, activeAlgorithm]);
 
-  // Cleanup animation frame on unmount
+
   useEffect(() => {
     return () => {
       if (animationRef.current) {
@@ -99,15 +99,15 @@ const MinimumSpanningTreeVisualizer = () => {
     };
   }, []);
 
-  // Generate random graph with vertices and edges
+
   const generateRandomGraph = () => {
-    // Reset animation state
+
     if (runningState === 'running') {
       pauseVisualization();
     }
     setRunningState('idle');
 
-    // Create vertices distributed in a circle
+
     const vertices = [];
     const angleStep = (2 * Math.PI) / vertexCount;
     const radius = Math.min(CANVAS_WIDTH, CANVAS_HEIGHT) * 0.4;
@@ -124,7 +124,7 @@ const MinimumSpanningTreeVisualizer = () => {
       });
     }
 
-    // Create edges with random weights
+
     const edges = [];
     for (let i = 0; i < vertexCount; i++) {
       for (let j = i + 1; j < vertexCount; j++) {
@@ -143,7 +143,7 @@ const MinimumSpanningTreeVisualizer = () => {
     resetAlgorithmStates(vertices, edges);
   };
 
-  // Reset algorithm states
+
   const resetAlgorithmStates = (vertices, edges) => {
     const initialStates = {};
 
@@ -162,19 +162,19 @@ const MinimumSpanningTreeVisualizer = () => {
     setAlgorithmStates(initialStates);
   };
 
-  // Handle algorithm selection
+
   const handleAlgorithmChange = (event, newAlgorithm) => {
     if (newAlgorithm !== null) {
       setActiveAlgorithm(newAlgorithm);
     }
   };
 
-  // Handle speed change
+
   const handleSpeedChange = (event, newValue) => {
     setSpeed(newValue);
   };
 
-  // Render the graph on canvas
+
   const renderGraph = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -185,7 +185,7 @@ const MinimumSpanningTreeVisualizer = () => {
     const state = algorithmStates[activeAlgorithm];
     if (!state) return;
 
-    // Draw edges
+
     state.edges.forEach(edge => {
       const sourceVertex = state.vertices[edge.source];
       const targetVertex = state.vertices[edge.target];
@@ -193,7 +193,7 @@ const MinimumSpanningTreeVisualizer = () => {
       let edgeColor = COLORS.EDGE_NORMAL;
       let lineWidth = 2;
 
-      // Check if this edge is part of the MST
+
       const isMSTEdge = state.mstEdges.some(
         mstEdge => (mstEdge.source === edge.source && mstEdge.target === edge.target) ||
           (mstEdge.source === edge.target && mstEdge.target === edge.source)
@@ -213,7 +213,7 @@ const MinimumSpanningTreeVisualizer = () => {
       drawEdge(ctx, sourceVertex, targetVertex, edge.weight, edgeColor, lineWidth);
     });
 
-    // Draw vertices
+
     state.vertices.forEach(vertex => {
       let color = COLORS.NORMAL;
 
@@ -230,7 +230,7 @@ const MinimumSpanningTreeVisualizer = () => {
       drawVertex(ctx, vertex, color);
     });
 
-    // Debug: Draw current step information
+
     if (state.animation && state.currentStep < state.animation.length) {
       ctx.fillStyle = '#000';
       ctx.font = '12px Arial';
@@ -243,7 +243,7 @@ const MinimumSpanningTreeVisualizer = () => {
     }
   };
 
-  // Draw a vertex
+
   const drawVertex = (ctx, vertex, color) => {
     ctx.beginPath();
     ctx.arc(vertex.x, vertex.y, NODE_RADIUS, 0, 2 * Math.PI);
@@ -253,7 +253,7 @@ const MinimumSpanningTreeVisualizer = () => {
     ctx.lineWidth = 2;
     ctx.stroke();
 
-    // Draw vertex label
+
     ctx.fillStyle = COLORS.TEXT_COLOR;
     ctx.font = '16px Arial';
     ctx.textAlign = 'center';
@@ -261,9 +261,9 @@ const MinimumSpanningTreeVisualizer = () => {
     ctx.fillText(vertex.id.toString(), vertex.x, vertex.y);
   };
 
-  // Draw an edge
+
   const drawEdge = (ctx, source, target, weight, color, lineWidth = 2) => {
-    // Draw edge line
+
     ctx.beginPath();
     ctx.moveTo(source.x, source.y);
     ctx.lineTo(target.x, target.y);
@@ -271,12 +271,12 @@ const MinimumSpanningTreeVisualizer = () => {
     ctx.lineWidth = lineWidth;
     ctx.stroke();
 
-    // Draw weight label if enabled
+
     if (showWeights) {
       const midX = (source.x + target.x) / 2;
       const midY = (source.y + target.y) / 2;
 
-      // Draw small white circle behind the weight
+
       ctx.beginPath();
       ctx.arc(midX, midY, 12, 0, 2 * Math.PI);
       ctx.fillStyle = 'white';
@@ -285,7 +285,7 @@ const MinimumSpanningTreeVisualizer = () => {
       ctx.lineWidth = 1;
       ctx.stroke();
 
-      // Draw weight
+
       ctx.fillStyle = COLORS.WEIGHT_COLOR;
       ctx.font = '12px Arial';
       ctx.textAlign = 'center';
@@ -294,12 +294,12 @@ const MinimumSpanningTreeVisualizer = () => {
     }
   };
 
-  // Start visualization
+
   const startVisualization = () => {
     if (runningState === 'running') return;
 
     if (runningState === 'idle') {
-      // Generate algorithm steps
+
       const algorithm = activeAlgorithm;
       let animation = [];
 
@@ -309,7 +309,7 @@ const MinimumSpanningTreeVisualizer = () => {
         animation = generateKruskalAlgorithmSteps();
       }
 
-      // Only proceed if we have animation steps
+
       if (animation.length === 0) {
         console.log("No animation steps generated");
         return;
@@ -331,7 +331,7 @@ const MinimumSpanningTreeVisualizer = () => {
       }));
 
       setRunningState('running');
-      // Use setTimeout to ensure state is updated before animation starts
+
       setTimeout(() => {
         animateStep();
       }, 50);
@@ -341,7 +341,7 @@ const MinimumSpanningTreeVisualizer = () => {
     }
   };
 
-  // Pause visualization
+
   const pauseVisualization = () => {
     if (runningState !== 'running') return;
 
@@ -351,7 +351,7 @@ const MinimumSpanningTreeVisualizer = () => {
     }
   };
 
-  // Reset visualization
+
   const resetVisualization = () => {
     if (animationRef.current) {
       clearTimeout(animationRef.current);
@@ -361,7 +361,7 @@ const MinimumSpanningTreeVisualizer = () => {
     setRunningState('idle');
   };
 
-  // Generate steps for Prim's algorithm
+
   const generatePrimAlgorithmSteps = () => {
     const animation = [];
     const vertices = [...graph.vertices];
@@ -374,7 +374,7 @@ const MinimumSpanningTreeVisualizer = () => {
       return animation;
     }
 
-    // Make a copy of edges that's easier to work with
+
     const adjList = {};
     vertices.forEach(vertex => {
       adjList[vertex.id] = [];
@@ -385,15 +385,15 @@ const MinimumSpanningTreeVisualizer = () => {
       adjList[edge.target].push({ to: edge.source, weight: edge.weight, original: edge });
     });
 
-    // Initialize arrays for tracking
+
     const visited = new Array(vertices.length).fill(false);
     const mstEdges = [];
     let mstWeight = 0;
 
-    // Start with vertex 0
+
     visited[0] = true;
 
-    // Mark starting vertex as active
+
     animation.push({
       type: 'updateVertex',
       id: 0,
@@ -401,7 +401,7 @@ const MinimumSpanningTreeVisualizer = () => {
       message: 'Starting with vertex 0'
     });
 
-    // Collect all edges from vertex 0
+
     const priorityQueue = [];
     adjList[0].forEach(edge => {
       priorityQueue.push({
@@ -424,12 +424,12 @@ const MinimumSpanningTreeVisualizer = () => {
 
     console.log(`Added ${priorityQueue.length} edges from vertex 0 to priority queue`);
 
-    // Sort the priority queue by weight
+
     priorityQueue.sort((a, b) => a.weight - b.weight);
 
-    // Main loop - continue until all vertices are visited or priority queue is empty
+
     while (priorityQueue.length > 0 && mstEdges.length < vertices.length - 1) {
-      // Get the edge with minimum weight
+
       const minEdge = priorityQueue.shift();
       console.log(`Processing minimum edge (${minEdge.source}-${minEdge.target}) with weight ${minEdge.weight}`);
 
@@ -439,7 +439,7 @@ const MinimumSpanningTreeVisualizer = () => {
         message: `Checking edge (${minEdge.source}-${minEdge.target}) with weight ${minEdge.weight}`
       });
 
-      // If the target vertex is already visited, skip this edge
+
       if (visited[minEdge.target]) {
         console.log(`Vertex ${minEdge.target} is already visited, skipping edge`);
         animation.push({
@@ -450,7 +450,7 @@ const MinimumSpanningTreeVisualizer = () => {
         continue;
       }
 
-      // Explicitly highlight vertices
+
       animation.push({
         type: 'updateVertex',
         id: minEdge.source,
@@ -465,7 +465,7 @@ const MinimumSpanningTreeVisualizer = () => {
         message: `Highlighting target vertex ${minEdge.target}`
       });
 
-      // Add the edge to MST
+
       mstEdges.push(minEdge);
       mstWeight += minEdge.weight;
       visited[minEdge.target] = true;
@@ -479,7 +479,7 @@ const MinimumSpanningTreeVisualizer = () => {
         message: `Adding edge (${minEdge.source}-${minEdge.target}) to MST. Total weight: ${mstWeight}`
       });
 
-      // Add all edges of the newly added vertex to the priority queue
+
       adjList[minEdge.target].forEach(edge => {
         if (!visited[edge.to]) {
           console.log(`Adding edge (${minEdge.target}-${edge.to}) with weight ${edge.weight} to priority queue`);
@@ -502,11 +502,11 @@ const MinimumSpanningTreeVisualizer = () => {
         }
       });
 
-      // Re-sort the priority queue
+
       priorityQueue.sort((a, b) => a.weight - b.weight);
     }
 
-    // Final animation step
+
     animation.push({
       type: 'complete',
       mstEdges,
@@ -518,7 +518,7 @@ const MinimumSpanningTreeVisualizer = () => {
     return animation;
   };
 
-  // Generate steps for Kruskal's algorithm
+
   const generateKruskalAlgorithmSteps = () => {
     const animation = [];
     const vertices = [...graph.vertices];
@@ -531,7 +531,7 @@ const MinimumSpanningTreeVisualizer = () => {
       return animation;
     }
 
-    // Sort all edges by weight
+
     const sortedEdges = [...edges].sort((a, b) => a.weight - b.weight);
     console.log(`Sorted ${sortedEdges.length} edges by weight`);
 
@@ -540,10 +540,10 @@ const MinimumSpanningTreeVisualizer = () => {
       message: 'Sorting all edges by weight'
     });
 
-    // Initialize disjoint set for each vertex
+
     const parent = Array(vertices.length).fill().map((_, i) => i);
 
-    // Find function for the disjoint set
+
     const find = (i) => {
       if (parent[i] !== i) {
         parent[i] = find(parent[i]);
@@ -551,22 +551,22 @@ const MinimumSpanningTreeVisualizer = () => {
       return parent[i];
     };
 
-    // Union function for the disjoint set
+
     const union = (i, j) => {
       parent[find(i)] = find(j);
     };
 
-    // Track the MST
+
     const mstEdges = [];
     let mstWeight = 0;
 
-    // Initialize all vertices as not visited
+
     animation.push({
       type: 'initVertices',
       message: 'Initializing all vertices'
     });
 
-    // Process edges in ascending order of weight
+
     for (const edge of sortedEdges) {
       console.log(`Processing edge (${edge.source}-${edge.target}) with weight ${edge.weight}`);
 
@@ -592,14 +592,14 @@ const MinimumSpanningTreeVisualizer = () => {
         message: `Checking vertices ${edge.source} (set ${rootSource}) and ${edge.target} (set ${rootTarget})`
       });
 
-      // If including this edge doesn't create a cycle, add it to MST
+
       if (rootSource !== rootTarget) {
         console.log(`Adding edge (${edge.source}-${edge.target}) to MST`);
         union(rootSource, rootTarget);
         mstEdges.push(edge);
         mstWeight += edge.weight;
 
-        // Explicitly set vertex status to active before adding to MST
+
         animation.push({
           type: 'updateVertex',
           id: edge.source,
@@ -621,7 +621,7 @@ const MinimumSpanningTreeVisualizer = () => {
           message: `Adding edge (${edge.source}-${edge.target}) to MST. Total weight: ${mstWeight}`
         });
 
-        // If we have n-1 edges, MST is complete
+
         if (mstEdges.length === vertices.length - 1) {
           console.log("MST complete with", mstEdges.length, "edges");
           break;
@@ -636,7 +636,7 @@ const MinimumSpanningTreeVisualizer = () => {
       }
     }
 
-    // Final animation step
+
     animation.push({
       type: 'complete',
       mstEdges,
@@ -648,7 +648,7 @@ const MinimumSpanningTreeVisualizer = () => {
     return animation;
   };
 
-  // Animate a single step of the algorithm
+
   const animateStep = () => {
     if (runningState !== 'running') return;
 
@@ -666,31 +666,31 @@ const MinimumSpanningTreeVisualizer = () => {
     let newMSTEdges = [...state.mstEdges];
     let newMSTWeight = state.mstWeight;
 
-    // Process step based on type
+
     switch (currentStep.type) {
       case 'message':
-        // Just a message, no state changes
+
         break;
 
       case 'initVertices':
-        // Reset all vertices to normal status
+
         newVertices.forEach(vertex => {
           vertex.status = 'normal';
         });
         break;
 
       case 'updateVertex':
-        // Update a specific vertex's status
+
         if (currentStep.id < newVertices.length) {
           newVertices[currentStep.id].status = currentStep.status;
 
-          // Log the change for debugging
+
           console.log(`Updated vertex ${currentStep.id} status to ${currentStep.status}`);
         }
         break;
 
       case 'considerEdge':
-        // Find the edge in our newEdges array
+
         const edgeToConsider = newEdges.find(
           e => (e.source === currentStep.edge.source && e.target === currentStep.edge.target) ||
             (e.source === currentStep.edge.target && e.target === currentStep.edge.source)
@@ -700,7 +700,7 @@ const MinimumSpanningTreeVisualizer = () => {
           console.log(`Setting edge (${edgeToConsider.source}-${edgeToConsider.target}) status to 'considering'`);
           edgeToConsider.status = 'considering';
 
-          // Also highlight the vertices connected by this edge
+
           if (currentStep.edge.source < newVertices.length) {
             newVertices[currentStep.edge.source].status = 'considering';
           }
@@ -713,7 +713,7 @@ const MinimumSpanningTreeVisualizer = () => {
         break;
 
       case 'highlightEdge':
-        // Reset any previously highlighted edges
+
         newEdges.forEach(e => {
           if (e.status === 'highlight') {
             console.log(`Resetting edge (${e.source}-${e.target}) from 'highlight' to 'normal'`);
@@ -721,7 +721,7 @@ const MinimumSpanningTreeVisualizer = () => {
           }
         });
 
-        // Find the edge in our newEdges array
+
         const edgeToHighlight = newEdges.find(
           e => (e.source === currentStep.edge.source && e.target === currentStep.edge.target) ||
             (e.source === currentStep.edge.target && e.target === currentStep.edge.source)
@@ -731,7 +731,7 @@ const MinimumSpanningTreeVisualizer = () => {
           console.log(`Setting edge (${edgeToHighlight.source}-${edgeToHighlight.target}) status to 'highlight'`);
           edgeToHighlight.status = 'highlight';
 
-          // Also highlight the vertices connected by this edge
+
           if (currentStep.edge.source < newVertices.length) {
             newVertices[currentStep.edge.source].status = 'highlight';
           }
@@ -744,10 +744,10 @@ const MinimumSpanningTreeVisualizer = () => {
         break;
 
       case 'highlightVertices':
-        // Explicitly highlight specified vertices
+
         currentStep.vertices.forEach(vertexId => {
           if (vertexId < newVertices.length) {
-            // Ensure previous status doesn't override the highlight
+
             newVertices[vertexId].status = 'highlight';
             console.log(`Highlighting vertex ${vertexId}`);
           }
@@ -755,7 +755,7 @@ const MinimumSpanningTreeVisualizer = () => {
         break;
 
       case 'addEdgeToMST':
-        // Update the edge status
+
         const mstEdge = newEdges.find(
           e => (e.source === currentStep.edge.source && e.target === currentStep.edge.target) ||
             (e.source === currentStep.edge.target && e.target === currentStep.edge.source)
@@ -763,11 +763,11 @@ const MinimumSpanningTreeVisualizer = () => {
 
         if (mstEdge) {
           console.log(`Setting edge (${mstEdge.source}-${mstEdge.target}) status to 'mst'`);
-          mstEdge.status = 'mst'; // This status should make it green
+          mstEdge.status = 'mst';
         } else {
           console.log(`WARNING: Could not find edge ${currentStep.edge.source}-${currentStep.edge.target} in edges array`);
 
-          // Log all edges for debugging
+
           if (showDebug) {
             console.log('All edges:');
             newEdges.forEach(e => {
@@ -776,7 +776,7 @@ const MinimumSpanningTreeVisualizer = () => {
           }
         }
 
-        // Add edge to MST list if not already there
+
         if (!newMSTEdges.some(e =>
           (e.source === currentStep.edge.source && e.target === currentStep.edge.target) ||
           (e.source === currentStep.edge.target && e.target === currentStep.edge.source))) {
@@ -785,7 +785,7 @@ const MinimumSpanningTreeVisualizer = () => {
 
         newMSTWeight = currentStep.mstWeight;
 
-        // Update vertex status (for Prim's algorithm)
+
         if (currentStep.vertex !== undefined) {
           if (currentStep.vertex < newVertices.length) {
             newVertices[currentStep.vertex].status = 'visited';
@@ -793,7 +793,7 @@ const MinimumSpanningTreeVisualizer = () => {
           }
         }
 
-        // For both algorithms: Always mark source and target as visited
+
         if (currentStep.edge.source < newVertices.length) {
           newVertices[currentStep.edge.source].status = 'visited';
           console.log(`Marking source vertex ${currentStep.edge.source} as visited`);
@@ -806,7 +806,7 @@ const MinimumSpanningTreeVisualizer = () => {
         break;
 
       case 'skipEdge':
-        // Reset edge status
+
         const edgeToSkip = newEdges.find(
           e => (e.source === currentStep.edge.source && e.target === currentStep.edge.target) ||
             (e.source === currentStep.edge.target && e.target === currentStep.edge.source)
@@ -815,7 +815,7 @@ const MinimumSpanningTreeVisualizer = () => {
         if (edgeToSkip) {
           edgeToSkip.status = 'normal';
 
-          // Reset vertex highlighting unless they're already visited
+
           if (currentStep.edge.source < newVertices.length &&
             newVertices[currentStep.edge.source].status !== 'visited') {
             newVertices[currentStep.edge.source].status = 'normal';
@@ -829,12 +829,12 @@ const MinimumSpanningTreeVisualizer = () => {
         break;
 
       case 'complete':
-        // Update all vertices to visited
+
         newVertices.forEach(vertex => {
           vertex.status = 'visited';
         });
 
-        // Update final MST edges and weight
+
         newMSTEdges = currentStep.mstEdges;
         newMSTWeight = currentStep.mstWeight;
         break;
@@ -843,7 +843,7 @@ const MinimumSpanningTreeVisualizer = () => {
         break;
     }
 
-    // Update algorithm state
+
     const newState = {
       ...state,
       vertices: newVertices,
@@ -859,12 +859,12 @@ const MinimumSpanningTreeVisualizer = () => {
       [algorithm]: newState
     });
 
-    // Schedule next animation step with appropriate delay
+
     const delay = Math.max(100, 1000 - (speed * 9));
     animationRef.current = setTimeout(animateStep, delay);
   };
 
-  // Toggle play/pause
+
   const toggleVisualization = () => {
     if (runningState === 'running') {
       pauseVisualization();
@@ -873,7 +873,7 @@ const MinimumSpanningTreeVisualizer = () => {
     }
   };
 
-  // Debug information for canvas
+
   const renderDebugInfo = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -897,7 +897,7 @@ const MinimumSpanningTreeVisualizer = () => {
       ctx.fillText('No animation steps generated', 20, 70);
     }
 
-    // Count edges by status
+
     const edgeStats = {};
     state.edges.forEach(edge => {
       edgeStats[edge.status || 'normal'] = (edgeStats[edge.status || 'normal'] || 0) + 1;
@@ -914,7 +914,7 @@ const MinimumSpanningTreeVisualizer = () => {
     ctx.fillText(statusLine, 20, 130);
   };
 
-  // Handle mouse down on canvas for dragging vertices
+
   const handleMouseDown = (e) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -926,7 +926,7 @@ const MinimumSpanningTreeVisualizer = () => {
     const mouseX = (e.clientX - rect.left) * scaleX;
     const mouseY = (e.clientY - rect.top) * scaleY;
 
-    // Check if we clicked on a vertex
+
     const state = algorithmStates[activeAlgorithm];
     if (!state) return;
 
@@ -944,7 +944,7 @@ const MinimumSpanningTreeVisualizer = () => {
     }
   };
 
-  // Handle mouse move on canvas for dragging vertices
+
   const handleMouseMove = (e) => {
     if (!isDraggingRef.current || draggedNodeRef.current === null) return;
 
@@ -958,7 +958,7 @@ const MinimumSpanningTreeVisualizer = () => {
     const mouseX = (e.clientX - rect.left) * scaleX;
     const mouseY = (e.clientY - rect.top) * scaleY;
 
-    // Update vertex position
+
     const state = algorithmStates[activeAlgorithm];
     if (!state) return;
 
@@ -969,7 +969,7 @@ const MinimumSpanningTreeVisualizer = () => {
       y: mouseY
     };
 
-    // Update all algorithm states with new vertex positions
+
     const newStates = {};
     Object.keys(algorithmStates).forEach(key => {
       newStates[key] = {
@@ -980,7 +980,7 @@ const MinimumSpanningTreeVisualizer = () => {
 
     setAlgorithmStates(newStates);
 
-    // Also update original graph
+
     const newGraphVertices = [...graph.vertices];
     newGraphVertices[draggedNodeRef.current] = {
       ...newGraphVertices[draggedNodeRef.current],
@@ -994,7 +994,7 @@ const MinimumSpanningTreeVisualizer = () => {
     });
   };
 
-  // Handle mouse up on canvas for dragging vertices
+
   const handleMouseUp = () => {
     isDraggingRef.current = false;
     draggedNodeRef.current = null;
